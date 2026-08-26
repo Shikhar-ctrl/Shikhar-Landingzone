@@ -81,15 +81,23 @@ Shikhar-Landingzone/
 The infrastructure is provisioned in a controlled sequence:
 
 ```text
-Resource Group
-      ↓
-Virtual Network
-      ↓
-Subnet
-      ↓
-Public IP
-      ↓
-Virtual Machine
+                    Azure
+                      │
+              ┌───────┴───────┐
+              │ Resource Group │
+              └───────┬───────┘
+                      │
+              ┌───────▼───────┐
+              │ Virtual Network│
+              └───────┬───────┘
+                      │
+             ┌────────┴────────┐
+             │                 │
+       Frontend Subnet    Backend Subnet
+             │                 │
+           NIC/VM             NIC/VM
+             │
+         Public IP
 ```
 
 Explicit dependencies are defined where required using Terraform's `depends_on` mechanism, while resource references can also create implicit dependencies.
