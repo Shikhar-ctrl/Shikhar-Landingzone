@@ -54,6 +54,7 @@ Shikhar-Landingzone/
 │   ├── provider.tf
 │   ├── variables.tf
 │   ├── terraform.tfvars
+│   ├── gitleakes.toml
 │   ├── .terraform.lock.hcl
 │   └── ...
 │
@@ -75,6 +76,7 @@ Shikhar-Landingzone/
 * Variable-driven infrastructure configuration
 * Terraform state management
 * Scalable structure for adding additional Azure services
+* Secret Scanning
 
 ## 🔗 Terraform Module Dependency Flow
 
@@ -271,6 +273,15 @@ The repository therefore ignores:
 * Use remote state for collaborative environments.
 * Apply least-privilege permissions to Azure identities.
 * Review `terraform plan` before applying infrastructure changes.
+## 🔐 Secret Scanning
+
+This project uses Gitleaks to detect hardcoded passwords,
+API keys, tokens, and other sensitive credentials before
+they are committed to the repository.
+
+Run locally:
+
+gitleaks dir . --config .gitleaks.toml
 
 ## 🔄 Future CI/CD Automation
 
